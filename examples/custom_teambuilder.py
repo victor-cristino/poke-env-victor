@@ -93,7 +93,7 @@ IVs: 0 Atk
 - Thunder
 - Energy Ball
 
-Cloyster @ King's Rock
+Cloyster @ Leftovers
 Ability: Skill Link
 EVs: 252 Atk / 4 SpD / 252 Spe
 Adamant Nature
@@ -120,7 +120,7 @@ Adamant Nature
 - Earthquake
 - Rapid Spin
 
-Cinccino @ King's Rock
+Cinccino @ Leftovers
 Ability: Skill Link
 EVs: 252 Atk / 4 Def / 252 Spe
 Jolly Nature
@@ -136,10 +136,10 @@ custom_builder = RandomTeamFromPool([team_1, team_2])
 async def main():
     # We create two players
     player_1 = RandomPlayer(
-        battle_format="gen8ou", team=custom_builder, max_concurrent_battles=10
+        battle_format="gen8ubers", team=custom_builder, max_concurrent_battles=10
     )
     player_2 = RandomPlayer(
-        battle_format="gen8ou", team=custom_builder, max_concurrent_battles=10
+        battle_format="gen8ubers", team=custom_builder, max_concurrent_battles=10
     )
 
     await player_1.battle_against(player_2, n_battles=5)

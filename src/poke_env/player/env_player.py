@@ -37,7 +37,6 @@ class EnvPlayer(OpenAIGymEnv, ABC):
         ping_timeout: Optional[float] = 20.0,
         team: Optional[Union[str, Teambuilder]] = None,
         start_challenging: bool = True,
-        use_old_gym_api: bool = True,  # False when new API is implemented in most ML libs
     ):
         """
         :param opponent: Opponent to challenge.
@@ -82,10 +81,6 @@ class EnvPlayer(OpenAIGymEnv, ABC):
         :param start_challenging: Whether to automatically start the challenge loop
             or leave it inactive.
         :type start_challenging: bool
-        :param use_old_gym_api: Whether to use old gym api (where step returns
-            (observation, reward, done, info)) or the new one (where step returns
-            (observation, reward, terminated, truncated, info))
-        :type use_old_gym_api: bool
         """
         self._reward_buffer = {}
         self._opponent_lock = Lock()
@@ -108,7 +103,6 @@ class EnvPlayer(OpenAIGymEnv, ABC):
             ping_interval=ping_interval,
             ping_timeout=ping_timeout,
             start_challenging=start_challenging,
-            use_old_gym_api=use_old_gym_api,
         )
 
     def reward_computing_helper(
@@ -123,29 +117,22 @@ class EnvPlayer(OpenAIGymEnv, ABC):
         victory_value: float = 1.0,
     ) -> float:
         """A helper function to compute rewards.
-
         The reward is computed by computing the value of a game state, and by comparing
         it to the last state.
-
         State values are computed by weighting different factor. Fainted pokemons,
         their remaining HP, inflicted statuses and winning are taken into account.
-
         For instance, if the last time this function was called for battle A it had
         a state value of 8 and this call leads to a value of 9, the returned reward will
         be 9 - 8 = 1.
-
         Consider a single battle where each player has 6 pokemons. No opponent pokemon
         has fainted, but our team has one fainted pokemon. Three opposing pokemons are
         burned. We have one pokemon missing half of its HP, and our fainted pokemon has
         no HP left.
-
         The value of this state will be:
-
         - With fainted value: 1, status value: 0.5, hp value: 1:
             = - 1 (fainted) + 3 * 0.5 (status) - 1.5 (our hp) = -1
         - With fainted value: 3, status value: 0, hp value: 1:
             = - 3 + 3 * 0 - 1.5 = -4.5
-
         :param battle: The battle for which to compute rewards.
         :type battle: AbstractBattle
         :param fainted_value: The reward weight for fainted pokemons. Defaults to 0.
@@ -210,7 +197,6 @@ class EnvPlayer(OpenAIGymEnv, ABC):
     def set_opponent(self, opponent: Union[Player, str]):
         """
         Sets the next opponent to the specified opponent.
-
         :param opponent: The next opponent to challenge
         :type opponent: Player or str
         """
@@ -226,7 +212,6 @@ class EnvPlayer(OpenAIGymEnv, ABC):
         Resets the environment to an inactive state: it will forfeit all unfinished
         battles, reset the internal battle tracker and optionally change the next
         opponent and restart the challenge loop.
-
         :param opponent: The opponent to use for the next battles. If empty it
             will not change opponent.
         :type opponent: Player or str, optional
@@ -249,18 +234,14 @@ class Gen4EnvSinglePlayer(EnvPlayer, ABC):
 
     def action_to_move(self, action: int, battle: Battle) -> BattleOrder:  # pyre-ignore
         """Converts actions to move orders.
-
         The conversion is done as follows:
-
         action = -1:
             The battle will be forfeited.
         0 <= action < 4:
             The actionth available move in battle.available_moves is executed.
         4 <= action < 10
             The action - 4th available switch in battle.available_switches is executed.
-
         If the proposed action is illegal, a random legal move is performed.
-
         :param action: The action to convert.
         :type action: int
         :param battle: The battle in which to act.
@@ -292,9 +273,7 @@ class Gen6EnvSinglePlayer(EnvPlayer, ABC):
 
     def action_to_move(self, action: int, battle: Battle) -> BattleOrder:  # pyre-ignore
         """Converts actions to move orders.
-
         The conversion is done as follows:
-
         action = -1:
             The battle will be forfeited.
         0 <= action < 4:
@@ -304,9 +283,7 @@ class Gen6EnvSinglePlayer(EnvPlayer, ABC):
             mega-evolution.
         8 <= action < 14
             The action - 8th available switch in battle.available_switches is executed.
-
         If the proposed action is illegal, a random legal move is performed.
-
         :param action: The action to convert.
         :type action: int
         :param battle: The battle in which to act.
@@ -342,9 +319,7 @@ class Gen7EnvSinglePlayer(EnvPlayer, ABC):
 
     def action_to_move(self, action: int, battle: Battle) -> BattleOrder:  # pyre-ignore
         """Converts actions to move orders.
-
         The conversion is done as follows:
-
         action = -1:
             The battle will be forfeited.
         0 <= action < 4:
@@ -357,9 +332,7 @@ class Gen7EnvSinglePlayer(EnvPlayer, ABC):
             mega-evolution.
         12 <= action < 18
             The action - 12th available switch in battle.available_switches is executed.
-
         If the proposed action is illegal, a random legal move is performed.
-
         :param action: The action to convert.
         :type action: int
         :param battle: The battle in which to act.
@@ -406,9 +379,7 @@ class Gen8EnvSinglePlayer(EnvPlayer, ABC):
 
     def action_to_move(self, action: int, battle: Battle) -> BattleOrder:  # pyre-ignore
         """Converts actions to move orders.
-
         The conversion is done as follows:
-
         action = -1:
             The battle will be forfeited.
         0 <= action < 4:
@@ -427,9 +398,7 @@ class Gen8EnvSinglePlayer(EnvPlayer, ABC):
             while dynamaxing.
         16 <= action < 22
             The action - 16th available switch in battle.available_switches is executed.
-
         If the proposed action is illegal, a random legal move is performed.
-
         :param action: The action to convert.
         :type action: int
         :param battle: The battle in which to act.
