@@ -183,13 +183,7 @@
         "beforeMoveCallback": "beforeMoveCallback",
         "category": "Physical",
         "condition": {
-            "duration": 2,
-            "durationCallback": "durationCallback",
-            "onAfterSetStatus": "onAfterSetStatus",
             "onBeforeMove": "onBeforeMove",
-            "onDamage": "onDamage",
-            "onDisableMove": "onDisableMove",
-            "onHit": "onHit",
             "onStart": "onStart"
         },
         "contestType": "Tough",
@@ -197,7 +191,6 @@
             "contact": 1,
             "protect": 1
         },
-        "ignoreEvasion": true,
         "ignoreImmunity": true,
         "isNonstandard": null,
         "name": "Bide",
@@ -262,7 +255,8 @@
         "contestType": "Beautiful",
         "flags": {
             "mirror": 1,
-            "protect": 1
+            "protect": 1,
+            "wind": 1
         },
         "name": "Blizzard",
         "num": 59,
@@ -328,6 +322,7 @@
             "mirror": 1,
             "protect": 1
         },
+        "isNonstandard": null,
         "maxMove": {
             "basePower": 130
         },
@@ -510,6 +505,7 @@
         "category": "Status",
         "contestType": "Beautiful",
         "flags": {},
+        "isNonstandard": null,
         "name": "Conversion",
         "num": 160,
         "onHit": "onHit",
@@ -581,7 +577,8 @@
         "flags": {
             "contact": 1,
             "mirror": 1,
-            "protect": 1
+            "protect": 1,
+            "slicing": 1
         },
         "name": "Cut",
         "num": 15,
@@ -624,12 +621,7 @@
         "accuracy": 100,
         "basePower": 100,
         "category": "Physical",
-        "condition": {
-            "duration": 2,
-            "onDamage": "onDamage",
-            "onInvulnerability": "onInvulnerability",
-            "onLockMove": "dig"
-        },
+        "condition": {},
         "contestType": "Tough",
         "flags": {
             "charge": 1,
@@ -653,12 +645,10 @@
         "basePower": 0,
         "category": "Status",
         "condition": {
-            "duration": 4,
-            "durationCallback": "durationCallback",
             "onBeforeMove": "onBeforeMove",
+            "onBeforeMovePriority": 7,
             "onDisableMove": "onDisableMove",
             "onEnd": "onEnd",
-            "onResidualOrder": 14,
             "onStart": "onStart"
         },
         "contestType": "Clever",
@@ -1065,12 +1055,7 @@
         "accuracy": 95,
         "basePower": 70,
         "category": "Physical",
-        "condition": {
-            "duration": 2,
-            "onDamage": "onDamage",
-            "onInvulnerability": "onInvulnerability",
-            "onLockMove": "fly"
-        },
+        "condition": {},
         "contestType": "Clever",
         "flags": {
             "charge": 1,
@@ -1274,7 +1259,8 @@
         "flags": {
             "distance": 1,
             "mirror": 1,
-            "protect": 1
+            "protect": 1,
+            "wind": 1
         },
         "name": "Gust",
         "num": 16,
@@ -1596,6 +1582,7 @@
             "protect": 1,
             "reflectable": 1
         },
+        "isNonstandard": null,
         "name": "Kinesis",
         "num": 134,
         "pp": 15,
@@ -1714,15 +1701,23 @@
         "condition": {
             "onStart": "onStart"
         },
+        "contestType": "Beautiful",
         "flags": {},
         "name": "Light Screen",
         "num": 113,
         "onTryHit": "onTryHit",
         "pp": 30,
         "priority": 0,
+        "secondary": null,
+        "sideCondition": "lightscreen",
         "target": "self",
         "type": "Psychic",
-        "volatileStatus": "lightscreen"
+        "volatileStatus": "lightscreen",
+        "zMove": {
+            "boost": {
+                "spd": 1
+            }
+        }
     },
     "lovelykiss": {
         "accuracy": 75,
@@ -1734,6 +1729,7 @@
             "protect": 1,
             "reflectable": 1
         },
+        "isNonstandard": null,
         "name": "Lovely Kiss",
         "num": 142,
         "pp": 10,
@@ -1881,7 +1877,7 @@
         "type": "Normal"
     },
     "mimic": {
-        "accuracy": true,
+        "accuracy": 100,
         "basePower": 0,
         "category": "Status",
         "contestType": "Cute",
@@ -1890,7 +1886,6 @@
             "bypasssub": 1,
             "protect": 1
         },
-        "ignoreAccuracy": false,
         "name": "Mimic",
         "noSketch": true,
         "num": 102,
@@ -1964,15 +1959,20 @@
             "onBoost": "onBoost",
             "onStart": "onStart"
         },
+        "contestType": "Beautiful",
         "flags": {},
         "name": "Mist",
         "num": 54,
         "pp": 30,
         "priority": 0,
         "secondary": null,
+        "sideCondition": "mist",
         "target": "self",
         "type": "Ice",
-        "volatileStatus": "mist"
+        "volatileStatus": "mist",
+        "zMove": {
+            "effect": "heal"
+        }
     },
     "nightshade": {
         "accuracy": 100,
@@ -2282,8 +2282,7 @@
             "duration": 255,
             "onHit": "onHit",
             "onLockMove": "rage",
-            "onStart": "onStart",
-            "onTryHit": "onTryHit"
+            "onStart": "onStart"
         },
         "contestType": "Tough",
         "flags": {
@@ -2311,7 +2310,8 @@
         "critRatio": 2,
         "flags": {
             "mirror": 1,
-            "protect": 1
+            "protect": 1,
+            "slicing": 1
         },
         "name": "Razor Leaf",
         "num": 75,
@@ -2372,6 +2372,7 @@
         "condition": {
             "onStart": "onStart"
         },
+        "contestType": "Clever",
         "flags": {},
         "name": "Reflect",
         "num": 115,
@@ -2379,9 +2380,15 @@
         "pp": 20,
         "priority": 0,
         "secondary": null,
+        "sideCondition": "reflect",
         "target": "self",
         "type": "Psychic",
-        "volatileStatus": "reflect"
+        "volatileStatus": "reflect",
+        "zMove": {
+            "boost": {
+                "def": 1
+            }
+        }
     },
     "rest": {
         "accuracy": true,
@@ -2687,6 +2694,7 @@
             "mirror": 1,
             "protect": 1
         },
+        "isNonstandard": null,
         "name": "Skull Bash",
         "num": 130,
         "onPrepareHit": "onPrepareHit",
@@ -2747,7 +2755,8 @@
         "flags": {
             "contact": 1,
             "mirror": 1,
-            "protect": 1
+            "protect": 1,
+            "slicing": 1
         },
         "name": "Slash",
         "num": 163,
@@ -2894,7 +2903,7 @@
     },
     "sonicboom": {
         "accuracy": 90,
-        "basePower": 0,
+        "basePower": 1,
         "category": "Special",
         "contestType": "Cool",
         "damage": 20,
@@ -2902,6 +2911,7 @@
             "mirror": 1,
             "protect": 1
         },
+        "ignoreImmunity": true,
         "isNonstandard": null,
         "name": "Sonic Boom",
         "num": 49,
@@ -3110,6 +3120,7 @@
             "mirror": 1,
             "protect": 1
         },
+        "isNonstandard": null,
         "name": "Submission",
         "num": 66,
         "pp": 25,
@@ -3132,6 +3143,7 @@
             "onTryHit": "onTryHit",
             "onTryHitPriority": -1
         },
+        "contestType": "Cute",
         "flags": {},
         "name": "Substitute",
         "num": 164,
@@ -3142,7 +3154,10 @@
         "secondary": null,
         "target": "self",
         "type": "Normal",
-        "volatileStatus": "substitute"
+        "volatileStatus": "substitute",
+        "zMove": {
+            "effect": "clearnegativeboost"
+        }
     },
     "superfang": {
         "accuracy": 90,
@@ -3451,7 +3466,6 @@
         "ignoreImmunity": false,
         "name": "Thunder Wave",
         "num": 86,
-        "onTryHit": "onTryHit",
         "pp": 20,
         "priority": 0,
         "secondary": null,

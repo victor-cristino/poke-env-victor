@@ -1,4 +1,3 @@
-# -*- coding: utf-8 -*-
 """This module contains utility functions and objects related to Player classes.
 """
 
@@ -6,7 +5,7 @@ from poke_env.player.player import Player
 from poke_env.player.random_player import RandomPlayer
 from poke_env.player.internals import POKE_LOOP
 from poke_env.player.baselines import MaxBasePowerPlayer, SimpleHeuristicsPlayer
-from poke_env.stats import to_id_str
+from poke_env.data import to_id_str
 from typing import Dict
 from typing import List
 from typing import Optional
